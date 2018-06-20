@@ -4,14 +4,34 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Municipio implements BaseModel, Serializable {
 	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "idMunicipio")
+	private Integer id;
 
-	private int id;
 	private int codigoMunicIBGE;
+
 	private String nomeMunicipio;
+
 	private boolean ativo;
+
+	@ManyToOne
+	@JoinColumn(name = "idEstado")
 	private Estado estado;
+
+	@OneToMany(mappedBy = "municipio")
 	private List<Bairro> bairros = new ArrayList<Bairro>();
 
 	/**
@@ -29,7 +49,7 @@ public class Municipio implements BaseModel, Serializable {
 	 * @param ativo
 	 * @param estado
 	 */
-	public Municipio(int id, int codigoMunicIBGE, String nomeMunicipio, boolean ativo, Estado estado) {
+	public Municipio(Integer id, int codigoMunicIBGE, String nomeMunicipio, boolean ativo, Estado estado) {
 		super();
 		this.id = id;
 		this.codigoMunicIBGE = codigoMunicIBGE;
@@ -41,14 +61,14 @@ public class Municipio implements BaseModel, Serializable {
 	/**
 	 * Captura o valor contido no parametro id
 	 */
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
 	/**
 	 * Setar o valor para o parametro id
 	 */
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

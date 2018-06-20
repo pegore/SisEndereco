@@ -7,16 +7,27 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 /**
  * Classe padrão para os paises do sistema de endereço
  * 
  * @author Lino Pegoretti
  *
  */
+
+@Entity
 public class Pais implements BaseModel, Serializable {
 	private static final long serialVersionUID = 1L;
-
-	private int id; // Identificador Único do País
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "idPais")
+	private Integer id; // Identificador Único do País
 	private int codigoOnu; // Código do País na ONU
 	private String codigoAlfa2; // Código Alfanumerico 2 digitos
 	private String codigoAlfa3; // Código Alfanumerico 3 digitos
@@ -25,6 +36,7 @@ public class Pais implements BaseModel, Serializable {
 	private String nomeFrances;// Nome do País em lingua francesa
 	private String codigoDDI; // Código de discagem Direta Internacional
 	private boolean ativo; // Identifica se o país cadastrado está ou não ativo
+	@OneToMany(mappedBy = "pais")
 	private List<Estado> estados = new ArrayList<Estado>();
 
 	/**
@@ -46,8 +58,8 @@ public class Pais implements BaseModel, Serializable {
 	 * @param codigoDDI
 	 * @param ativo
 	 */
-	public Pais(int id, int codigoOnu, String codigoAlfa2, String codigoAlfa3, String nomePortugues, String nomeIngles,
-			String nomeFrances, String codigoDDI, boolean ativo) {
+	public Pais(Integer id, int codigoOnu, String codigoAlfa2, String codigoAlfa3, String nomePortugues,
+			String nomeIngles, String nomeFrances, String codigoDDI, boolean ativo) {
 		super();
 		this.id = id;
 		this.codigoOnu = codigoOnu;
@@ -63,14 +75,14 @@ public class Pais implements BaseModel, Serializable {
 	/**
 	 * Captura o valor contido no parametro id
 	 */
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
 	/**
 	 * Setar o valor para o parametro id
 	 */
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -205,15 +217,16 @@ public class Pais implements BaseModel, Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "\nClasse ................: " + getClass().getSimpleName() + //
-				"\nIdentificador País.....: " + getId() + //
-				"\nCódigo da ONU .........: " + getCodigoOnu() + //
-				"\nCodigo Alfa2...........: " + getCodigoAlfa2() + //
-				"\nCodigo Alfa3...........: " + getCodigoAlfa3() + //
-				"\nNome Portugues.........: " + getNomePortugues() + //
-				"\nNome Ingles............: " + getNomeIngles() + //
-				"\nNome Frances...........: " + getNomeFrances() + //
-				"\nAtivo..................: " + (isAtivo() ? "Sim" : "Não");
+		return String.format(//
+				"\nClasse ................: " + getClass().getSimpleName() + //
+						"\nIdentificador País.....: " + getId() + //
+						"\nCódigo da ONU .........: " + getCodigoOnu() + //
+						"\nCodigo Alfa2...........: " + getCodigoAlfa2() + //
+						"\nCodigo Alfa3...........: " + getCodigoAlfa3() + //
+						"\nNome Portugues.........: " + getNomePortugues() + //
+						"\nNome Ingles............: " + getNomeIngles() + //
+						"\nNome Frances...........: " + getNomeFrances() + //
+						"\nAtivo..................: " + (isAtivo() ? "Sim" : "Não"));
 	}
 
 	/*

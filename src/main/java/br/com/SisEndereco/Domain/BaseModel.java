@@ -7,5 +7,5 @@ package br.com.SisEndereco.Domain;
  *
  */
 public interface BaseModel{
-	public int getId();
+	public Integer getId();
 }

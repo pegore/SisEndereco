@@ -7,20 +7,34 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
 /**
  * @author Lino Pegoretti
  *
  */
-
+@Entity
 public class Estado implements BaseModel, Serializable {
 	private static final long serialVersionUID = 1L;
-
-	private int id; // Identificador único do Estado
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "idEstado")
+	private Integer id; // Identificador único do Estado
 	private int codigoIBGE; // Código do Estado pelo IBGE
 	private String sigla; // Sigla do Estado
 	private String nomeEstado; // Nome Completo do Estado
 	private boolean ativo; // Identifica se o Estado cadastrado está ou não ativo
+	@ManyToOne
+	@JoinColumn(name = "idPais")
 	private Pais pais; // Pais a que o estado atual pertence
+	@OneToMany(mappedBy = "estado")
 	private List<Municipio> municipios = new ArrayList<Municipio>(); // lista de municipios do estado atual
 
 	/**
@@ -39,7 +53,7 @@ public class Estado implements BaseModel, Serializable {
 	 * @param ativo
 	 * @param pais
 	 */
-	public Estado(int id, int codigoIBGE, String sigla, String nomeEstado, boolean ativo, Pais pais) {
+	public Estado(Integer id, int codigoIBGE, String sigla, String nomeEstado, boolean ativo, Pais pais) {
 		super();
 		this.id = id;
 		this.codigoIBGE = codigoIBGE;
@@ -52,14 +66,14 @@ public class Estado implements BaseModel, Serializable {
 	/**
 	 * Captura o valor contido no parametro id
 	 */
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
 	/**
 	 * Setar o valor para o parametro id
 	 */
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

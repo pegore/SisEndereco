@@ -1,15 +1,10 @@
 package br.com.SisEndereco.Repository;
 
-import java.util.ArrayList;
-
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import br.com.SisEndereco.Domain.Pais;
 
 @Repository
-public interface PaisRepository extends CrudRepository<Pais, Integer> {
-	ArrayList<Pais> findByNomePortuguesContaining(String nomePortugues);
-	ArrayList<Pais> findByCodigoAlfa2Containing(String codigoAlfa2);
-
+public interface PaisRepository extends JpaRepository<Pais, Integer> {
 }

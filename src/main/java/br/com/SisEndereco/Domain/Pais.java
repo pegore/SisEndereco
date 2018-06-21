@@ -28,7 +28,7 @@ public class Pais implements BaseModel, Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idPais")
 	private Integer id; // Identificador Único do País
-	private int codigoOnu; // Código do País na ONU
+	private Integer codigoOnu; // Código do País na ONU
 	private String codigoAlfa2; // Código Alfanumerico 2 digitos
 	private String codigoAlfa3; // Código Alfanumerico 3 digitos
 	private String nomePortugues; // Nome do País em lingua portuguesa
@@ -58,7 +58,7 @@ public class Pais implements BaseModel, Serializable {
 	 * @param codigoDDI
 	 * @param ativo
 	 */
-	public Pais(Integer id, int codigoOnu, String codigoAlfa2, String codigoAlfa3, String nomePortugues,
+	public Pais(Integer id, Integer codigoOnu, String codigoAlfa2, String codigoAlfa3, String nomePortugues,
 			String nomeIngles, String nomeFrances, String codigoDDI, boolean ativo) {
 		super();
 		this.id = id;
@@ -89,14 +89,14 @@ public class Pais implements BaseModel, Serializable {
 	/**
 	 * Captura o valor contido no parametro codigoOnu
 	 */
-	public int getCodigoOnu() {
+	public Integer getCodigoOnu() {
 		return codigoOnu;
 	}
 
 	/**
 	 * Setar o valor para o parametro codigoOnu
 	 */
-	public void setCodigoOnu(int codigoOnu) {
+	public void setCodigoOnu(Integer codigoOnu) {
 		this.codigoOnu = codigoOnu;
 	}
 
@@ -213,23 +213,6 @@ public class Pais implements BaseModel, Serializable {
 	}
 
 	/*
-	 * ToString da classe
-	 */
-	@Override
-	public String toString() {
-		return String.format(//
-				"\nClasse ................: " + getClass().getSimpleName() + //
-						"\nIdentificador País.....: " + getId() + //
-						"\nCódigo da ONU .........: " + getCodigoOnu() + //
-						"\nCodigo Alfa2...........: " + getCodigoAlfa2() + //
-						"\nCodigo Alfa3...........: " + getCodigoAlfa3() + //
-						"\nNome Portugues.........: " + getNomePortugues() + //
-						"\nNome Ingles............: " + getNomeIngles() + //
-						"\nNome Frances...........: " + getNomeFrances() + //
-						"\nAtivo..................: " + (isAtivo() ? "Sim" : "Não"));
-	}
-
-	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see java.lang.Object#hashCode()
@@ -260,4 +243,22 @@ public class Pais implements BaseModel, Serializable {
 			return false;
 		return true;
 	}
+
+	/*
+	 * ToString da classe
+	 */
+	@Override
+	public String toString() {
+		return String.format(//
+				"\nClasse ................: " + getClass().getSimpleName() + //
+						"\nIdentificador País.....: " + getId() + //
+						"\nCódigo da ONU .........: " + getCodigoOnu() + //
+						"\nCodigo Alfa2...........: " + getCodigoAlfa2() + //
+						"\nCodigo Alfa3...........: " + getCodigoAlfa3() + //
+						"\nNome Portugues.........: " + getNomePortugues() + //
+						"\nNome Ingles............: " + getNomeIngles() + //
+						"\nNome Frances...........: " + getNomeFrances() + //
+						"\nAtivo..................: " + (isAtivo() ? "Sim" : "Não"));
+	}
+
 }

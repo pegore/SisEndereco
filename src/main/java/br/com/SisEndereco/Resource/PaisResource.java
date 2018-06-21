@@ -1,10 +1,13 @@
 package br.com.SisEndereco.Resource;
 
-import java.util.ArrayList;
+import java.util.List;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -145,18 +148,9 @@ public class PaisResource {
 	 * 
 	 */
 
-	@RequestMapping(value = "/paises/{nomePortugues}", method = RequestMethod.GET)
-	public ResponseEntity<ArrayList<Pais>> findByNomePortuguesContaining(@PathVariable String nomePortugues) {
-		Integer codigoOnu = 0;
-		String codigoAlfa2 = "";
-		String codigoAlfa3 = "";
-		String nomeIngles = "";
-		String nomeFrances = "";
-		String codigoDDI = "";
-		boolean ativo = true;
-		Pais paisPesquisa = new Pais(null, codigoOnu, codigoAlfa2, codigoAlfa3, nomePortugues, nomeIngles, nomeFrances,
-				codigoDDI, ativo);
-		ArrayList<Pais> listaPaises = paisService.findByNomePortuguesContaining(paisPesquisa);
+	@RequestMapping(value = "/paises", method = RequestMethod.GET)
+	public ResponseEntity<List<Pais>> findPais(@Valid @RequestBody Pais paisPesquisa) {
+		List<Pais> listaPaises = paisService.findPais(paisPesquisa);
 		return ResponseEntity.ok().body(listaPaises);
 	}
 }

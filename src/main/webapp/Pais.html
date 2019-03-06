@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8">
+<title>Cadastro de Países</title>
+<link href="library/Bootstrap/css/bootstrap.css" rel="stylesheet">
+<!-- <link href="library/Bootstrap/css/bootstrap-theme.css" rel="stylesheet"> -->
+<script type="text/javascript" src="controller/sistema.js"></script>
+</head>
+
+<body>
+	<section id="container" class="">
+		<section id="main-content">
+			<section class="wrapper">
+				<section class="panel">
+					<header class="panel-heading">Cadastro de Países</header>
+					<div class="panel-body">
+						<form id="formImportaDados" name="formImportaDados"
+							class="form-horizontal" data-toggle="validator" role="form"
+							method="post" enctype="multipart/form-data"
+							action="/paises/upload">
+							<!-- Campo e Botão para escolher arquivo de importação-->
+							<div class="form-group">
+								<label class="col-lg-3 control-label" for="edtInputFile">Arquivo
+									a ser importado:</label>
+								<div class="col-lg-6">
+									<input id="edtInputFile" name="edtInputFile"
+										class="form-control" type="file" accept=".txt"
+										placeholder="Arquivo Texto"
+										data-error="Selecione um arquivo apra importação!"
+										required="required">
+									<p class="help-block">Escolha um arquivo que contenham os
+										dados dos Países a serem importados</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="rdbTipo" class="col-lg-4 control-label">Tipo
+									do Arquivo:</label>
+								<div class="col-lg-4">
+									<div class="radio">
+										<label> <input type="radio" name="rdbTipo"
+											id="correio" value="correio" checked>Correios
+										</label>
+									</div>
+									<div class="radio">
+										<label> <input type="radio" name="rdbTipo"
+											id="generico" value="generico">Genérico
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="rdbOrganizacao" class="col-lg-3 control-label">Organização
+									do Arquivo:</label>
+								<div class="col-lg-9">
+									<div class="radio">
+										<label> <input type="radio" name="rdbOrganizacao"
+											id="delimitado" value="delimitado" checked>Delimitado
+										</label>
+									</div>
+									<div class="radio">
+										<label> <input type="radio" name="rdbOrganizacao"
+											id="fixo" value="fixo">Fixo
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<!-- Checkbox Delimitador-->
+								<label class="col-lg-3 control-label" for="rdbDelimitador">Delimitador
+									do Arquivo:</label>
+								<div class="col-lg-9">
+									<label> <input type="checkbox" name="rdbDelimitador"
+										id="rdbDelimitador" value="tabulacao"> Tabulação
+									</label><br> <label> <input type="checkbox"
+										name="rdbDelimitador" id="rdbDelimitador" value="pontoVirgula">
+										Ponto e Vírgula
+									</label><br> <label> <input type="checkbox"
+										name="rdbDelimitador" id="rdbDelimitador" value="virgula">
+										Vírgula
+									</label><br> <label> <input type="checkbox"
+										name="rdbDelimitador" id="rdbDelimitador" value="espaco">
+										Espaço
+									</label><br> <label> <input type="checkbox"
+										name="rdbDelimitador" id="rdbDelimitador" value="outros"
+										checked="checked">Outros:
+									</label><input type="text" name="edtDelimitador" id="edtDelimitador"><br>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="checkbox">
+									<label> <input id="chkCabecalho" name="chkCabecalho"
+										type="checkbox" value="true"> Meu arquivo possui
+										cabeçalho de Colunas
+									</label>
+								</div>
+							</div>
+							<button class="btn btn-success" type="submit">
+								Importar <span class="icon_check_alt2"></span>
+							</button>
+							<button data-dismiss="modal" class="btn btn-danger" type="button">
+								Fechar <span class="icon_close_alt2"></span>
+							</button>
+						</form>
+					</div>
+				</section>
+			</section>
+		</section>
+	</section>
+</body>
+</html>

@@ -38,10 +38,10 @@ public class SisEnderecoApplication implements CommandLineRunner {
 		Pais pais20 = new Pais(0, 20, "AD", "AND", "Andorra", "Andorra", "Andorre", "376", true);
 		ArrayList<Pais> paises = new ArrayList<Pais>(
 				Arrays.asList(pais4, pais8, pais12, pais16, pais710, pais276, pais20));
-		repoPais.saveAll(paises);		
+		repoPais.saveAll(paises);
 		log.info("        Pesquisa Unitária:       ");
 		log.info("---------------------------------");
-		List<Pais> listaTotal = paisResource.findPais(new Pais()).getBody();
+		List<Pais> listaTotal = paisResource.findLike(new Pais()).getBody();
 		for (Pais pais : listaTotal) {
 			log.info(paisResource.findById(pais.getId()).toString());
 		}
@@ -50,10 +50,11 @@ public class SisEnderecoApplication implements CommandLineRunner {
 		paisPesquisa.setNomeFrances("d");
 		log.info("        Pesquisa por campo       ");
 		log.info("---------------------------------");
-		for (Pais pais : paisResource.findPais(paisPesquisa).getBody()) {
+		for (Pais pais : paisResource.findLike(paisPesquisa).getBody()) {
 			log.info(pais.toString());
 		}
 		log.info("---------------------------------");
+
 	}
 
 }

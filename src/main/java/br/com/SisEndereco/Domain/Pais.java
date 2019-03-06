@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * Classe padrão para os paises do sistema de endereço
@@ -21,7 +21,7 @@ import javax.persistence.OneToMany;
  *
  */
 
-@Entity
+@Document
 public class Pais implements BaseModel, Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -36,7 +36,7 @@ public class Pais implements BaseModel, Serializable {
 	private String nomeFrances;// Nome do País em lingua francesa
 	private String codigoDDI; // Código de discagem Direta Internacional
 	private boolean ativo; // Identifica se o país cadastrado está ou não ativo
-	@OneToMany(mappedBy = "pais")
+	//@OneToMany(mappedBy = "pais")
 	private List<Estado> estados = new ArrayList<Estado>();
 
 	/**
